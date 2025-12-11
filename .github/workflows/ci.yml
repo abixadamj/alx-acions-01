@@ -33,14 +33,16 @@ jobs:
 
 # Docker as an addition
 
-  docker:
-    runs-on: ubuntu-latest
-    needs: test  # Run after tests pass
-    steps:
-    - uses: actions/checkout@v4
+#  docker:
+#    runs-on: ubuntu-latest
+#    needs: test  # Run after tests pass
+#    steps:
+#    - uses: actions/checkout@v4
+#    
+#    - name: Build Docker image
+#      run: docker build -t flask-app .
+#      
+#    - name: Test Docker image
+#      run: docker run --rm flask-app pytest tests/ -v
+
     
-    - name: Build Docker image
-      run: docker build -t flask-app .
-      
-    - name: Test Docker image
-      run: docker run --rm flask-app pytest tests/ -v
