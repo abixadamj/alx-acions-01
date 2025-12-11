@@ -7,6 +7,7 @@ jobs:
       - name: Wypisz powitanie
         run: echo "Witaj w GitHub Actions!"
       - name: Test echo
-        run: echo "Branch: ${{ github.ref }}"
-        run: echo "Repo: ${{ github.repository }}"
-        run: echo "Job status: ${{ job.status }}"
+        run: echo "sprawdzamy"
+        # run: echo "Branch: ${{ github.ref }}"
+        # run: echo "Repo: ${{ github.repository }}"
+        # run: echo "Job status: ${{ job.status }}"
