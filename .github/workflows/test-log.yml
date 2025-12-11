@@ -11,6 +11,7 @@ jobs:
         run: echo "Witaj w GitHub Actions!"
       - name: Test echo
         run: echo "sprawdzamy"
+        run: echo "$REPO_NAME"  # Działa wszędzie
         # run: echo "Branch: ${{ github.ref }}"
         # run: echo "Repo: ${{ github.event.repository.name }}"
         # run: echo "Job status: ${{ job.status }}"
