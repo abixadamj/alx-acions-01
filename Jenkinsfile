@@ -15,8 +15,8 @@ pipeline {
         
         stage('Run with venv') {
             options {
-                timeout(time: 1, unit: 'MINUTES') {
-                    abort()
+                timeout(time: 1, unit: 'MINUTES') 
+
                 }
             }
             
