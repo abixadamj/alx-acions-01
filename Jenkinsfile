@@ -1,51 +1,32 @@
-// budowanie Flaska
+// flask uruchomiony z linii poleceń
 
 pipeline {
     agent any
     
-    environment {
-        IMAGE_NAME = "flask-app"
-        CONTAINER_NAME = "flask-app-container"
-        IMAGE_TAG = "${BUILD_NUMBER}"
-        FULL_IMAGE = "${IMAGE_NAME}:${IMAGE_TAG}"
-    }
     
     stages {
+
         stage('Checkout') {
             steps {
                 checkout scm
             }
         }
         
-        stage('Build Docker Image') {
+        
+        stage('Run with venv') {
             steps {
                 script {
-                    docker.build(FULL_IMAGE, ".")
+                        sh '''
+                        python3 -m venv venv
+                        . venv/bin/activate
+                        pip install -r requirements.txt
+                        python3 app.py
+                        '''
                 }
             }
         }
         
-        stage('Stop Previous Container') {
-            steps {
-                script {
-                    sh """
-                        docker stop ${CONTAINER_NAME} || true
-                        docker rm ${CONTAINER_NAME} || true
-                    """
-                }
-            }
-        }
         
-        stage('Deploy Container') {
-            steps {
-                sh """
-                    docker run -d \
-                    --name ${CONTAINER_NAME} \
-                    -p 5000:5000 \
-                    ${FULL_IMAGE}
-                """
-            }
-        }
         
         stage('Verify Deployment') {
             steps {
